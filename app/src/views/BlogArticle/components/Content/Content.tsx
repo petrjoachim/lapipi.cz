@@ -160,7 +160,7 @@ const Content = (): JSX.Element => {
           </Typography>
         </Box>
       </Box>
-      <Box
+      {/* <Box
         component={Card}
         boxShadow={2}
         display={'flex'}
@@ -264,8 +264,8 @@ const Content = (): JSX.Element => {
             </Grid>
           </form>
         </CardContent>
-      </Box>
-      <Box paddingX={{ xs: 0, sm: 4, md: 6 }} paddingY={4}>
+      </Box> */}
+      {/* <Box paddingX={{ xs: 0, sm: 4, md: 6 }} paddingY={4}>
         <Typography color={'text.secondary'}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -274,7 +274,7 @@ const Content = (): JSX.Element => {
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur.
         </Typography>
-      </Box>
+      </Box> */}
       <Box paddingY={4}>
         <Divider />
       </Box>

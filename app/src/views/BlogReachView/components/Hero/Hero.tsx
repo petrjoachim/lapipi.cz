@@ -51,7 +51,7 @@ const Hero = (): JSX.Element => {
                 color: theme.palette.common.white,
               }}
             >
-              Newsroom
+              lapipi.cz
             </Typography>
           </Box>
           <Box>
@@ -62,7 +62,7 @@ const Hero = (): JSX.Element => {
                 color: theme.palette.common.white,
               }}
             >
-              Latest updates and Hand-picked resources.
+              Pipina v troubě, pípák v rendlíku.
             </Typography>
           </Box>
         </Box>

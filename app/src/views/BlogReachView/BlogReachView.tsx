@@ -20,7 +20,7 @@ const BlogReachView = (): JSX.Element => {
     <Main colorInvert={true}>
       <Box bgcolor={'alternate.main'} position={'relative'}>
         <Hero />
-        <Container
+        {/* <Container
           sx={{
             marginTop: '-5rem',
             position: 'relative',
@@ -29,21 +29,21 @@ const BlogReachView = (): JSX.Element => {
           }}
         >
           <SearchBox />
-        </Container>
-        <Container>
+        </Container> */}
+        {/* <Container>
           <FeaturedArticle />
-        </Container>
+        </Container> */}
         <Container paddingTop={'0 !important'}>
           <LastStories />
         </Container>
-        <Container paddingTop={'0 !important'}>
+        {/* <Container paddingTop={'0 !important'}>
           <CaseStudies />
-        </Container>
-        <Box paddingBottom={{ xs: 2, sm: 3, md: 4 }}>
+        </Container> */}
+        {/* <Box paddingBottom={{ xs: 2, sm: 3, md: 4 }}>
           <Container paddingTop={'0 !important'}>
             <PopularArticles />
           </Container>
-        </Box>
+        </Box> */}
         <Box
           component={'svg'}
           preserveAspectRatio="none"
@@ -67,9 +67,9 @@ const BlogReachView = (): JSX.Element => {
           ></path>
         </Box>
       </Box>
-      <Container>
+      {/* <Container>
         <Newsletter />
-      </Container>
+      </Container> */}
     </Main>
   );
 };

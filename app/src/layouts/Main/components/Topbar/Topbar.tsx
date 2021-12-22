@@ -61,7 +61,7 @@ const Topbar = ({
           width={1}
         />
       </Box>
-      <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
+      {/* <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
         <Box>
           <NavItem
             title={'Landings'}
@@ -137,7 +137,7 @@ const Topbar = ({
         >
           <MenuIcon />
         </Button>
-      </Box>
+      </Box> */}
     </Box>
   );
 };

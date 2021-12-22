@@ -27,17 +27,20 @@ const BlogArticle = (): JSX.Element => {
         <Hero />
         <Container>
           <Grid container spacing={4}>
-            <Grid item xs={12} md={8}>
+          <Grid item>
               <Content />
-            </Grid>
-            <Grid item xs={12} md={4}>
+            </Grid> 
+            {/* <Grid item xs={12} md={8}>
+              <Content />
+            </Grid> */}
+            {/* <Grid item xs={12} md={4}>
               {isMd ? (
                 <Box marginBottom={4}>
                   <SidebarArticles />
                 </Box>
               ) : null}
               <SidebarNewsletter />
-            </Grid>
+            </Grid> */}
           </Grid>
         </Container>
         <Box
@@ -58,7 +61,7 @@ const BlogArticle = (): JSX.Element => {
           ></path>
         </Box>
       </Box>
-      <Box bgcolor={'alternate.main'}>
+      {/* <Box bgcolor={'alternate.main'}>
         <Container>
           <SimilarStories />
         </Container>
@@ -82,7 +85,7 @@ const BlogArticle = (): JSX.Element => {
             d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"
           ></path>
         </Box>
-      </Box>
+      </Box> */}
     </Main>
   );
 };

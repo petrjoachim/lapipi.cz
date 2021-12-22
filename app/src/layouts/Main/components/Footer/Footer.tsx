@@ -38,7 +38,7 @@ const Footer = (): JSX.Element => {
               width={1}
             />
           </Box>
-          <Box display="flex" flexWrap={'wrap'} alignItems={'center'}>
+          {/* <Box display="flex" flexWrap={'wrap'} alignItems={'center'}>
             <Box marginTop={1} marginRight={2}>
               <Link
                 underline="none"
@@ -73,7 +73,7 @@ const Footer = (): JSX.Element => {
                 Purchase now
               </Button>
             </Box>
-          </Box>
+          </Box> */}
         </Box>
       </Grid>
       <Grid item xs={12}>
@@ -83,9 +83,9 @@ const Footer = (): JSX.Element => {
           color="text.secondary"
           gutterBottom
         >
-          &copy; theFront. 2021, Maccarian. All rights reserved
+          &copy; lapipi.cz 2022. All rights reserved
         </Typography>
-        <Typography
+        {/* <Typography
           align={'center'}
           variant={'caption'}
           color="text.secondary"
@@ -95,7 +95,7 @@ const Footer = (): JSX.Element => {
           our authorised service providers may use cookies for storing
           information to help provide you with a better, faster and safer
           experience and for marketing purposes.
-        </Typography>
+        </Typography> */}
       </Grid>
     </Grid>
   );

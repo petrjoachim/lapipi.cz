@@ -6,3 +6,4 @@ const BlogReachViewPage = (): JSX.Element => {
 };
 
 export default BlogReachViewPage;
+  

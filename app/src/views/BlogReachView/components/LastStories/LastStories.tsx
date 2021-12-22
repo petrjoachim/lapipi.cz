@@ -9,6 +9,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
+import Link from 'next/link';
 
 const mock = [
   {
@@ -46,6 +47,7 @@ const mock = [
 
 const LastStories = (): JSX.Element => {
   const theme = useTheme();
+
   return (
     <Box>
       <Box
@@ -57,10 +59,10 @@ const LastStories = (): JSX.Element => {
       >
         <Box>
           <Typography fontWeight={700} variant={'h6'} gutterBottom>
-            Latest stories
+            Recepty
           </Typography>
           <Typography color={'text.secondary'}>
-            Here’s what we’ve been up to recently.
+            Zde jsou recepty, které jsem zkoušela jako poslední.
           </Typography>
         </Box>
         <Box display="flex" marginTop={{ xs: 2, md: 0 }}>
@@ -71,7 +73,7 @@ const LastStories = (): JSX.Element => {
             size="large"
             marginLeft={2}
           >
-            View all
+            Všechny
           </Box>
         </Box>
       </Box>
@@ -79,8 +81,8 @@ const LastStories = (): JSX.Element => {
         {mock.map((item, i) => (
           <Grid item xs={12} sm={6} md={4} key={i}>
             <Box
-              component={'a'}
-              href={''}
+              component={Link}
+              href={'/recepty/test' + i}
               display={'block'}
               width={1}
               height={1}

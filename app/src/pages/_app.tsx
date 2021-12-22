@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }): JSX.Element {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <title>LaPipi.cz | Pták v rendlíku.</title>
+        <title>lapipi.cz | Pipina v troubě, pípák v rendlíku.</title>
       </Head>
       <Page>
         <Component {...pageProps} />
