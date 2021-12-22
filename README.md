@@ -1,1 +1,5 @@
-# lapipi.cz
+
+# Deploy:
+```
+vercel --prod app
+``` 
