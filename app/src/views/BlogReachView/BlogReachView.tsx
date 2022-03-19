@@ -13,8 +13,9 @@ import {
   PopularArticles,
   Newsletter,
 } from './components';
+import { ArticleProps } from 'types/Recipe';
 
-const BlogReachView = (): JSX.Element => {
+const BlogReachView = (props: { articles: ArticleProps[] }): JSX.Element => {
   const theme = useTheme();
   return (
     <Main colorInvert={true}>
@@ -34,7 +35,7 @@ const BlogReachView = (): JSX.Element => {
           <FeaturedArticle />
         </Container> */}
         <Container paddingTop={'0 !important'}>
-          <LastStories />
+          <LastStories articles={props.articles} />
         </Container>
         {/* <Container paddingTop={'0 !important'}>
           <CaseStudies />

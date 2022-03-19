@@ -10,6 +10,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import Link from 'next/link';
+import { ArticleProps } from 'types/Recipe';
+import { format, parseISO } from 'date-fns';
 
 const mock = [
   {
@@ -45,7 +47,7 @@ const mock = [
   },
 ];
 
-const LastStories = (): JSX.Element => {
+const LastStories = (props: { articles: ArticleProps[] }): JSX.Element => {
   const theme = useTheme();
 
   return (
@@ -78,11 +80,11 @@ const LastStories = (): JSX.Element => {
         </Box>
       </Box>
       <Grid container spacing={4}>
-        {mock.map((item, i) => (
+        {props.articles.map((article, i) => (
           <Grid item xs={12} sm={6} md={4} key={i}>
             <Box
               component={Link}
-              href={'/recepty/test' + i}
+              href={`/recepty/${article.slug}`}
               display={'block'}
               width={1}
               height={1}
@@ -104,8 +106,8 @@ const LastStories = (): JSX.Element => {
                 sx={{ backgroundImage: 'none' }}
               >
                 <CardMedia
-                  image={item.image}
-                  title={item.title}
+                  image={article.hero?.url}
+                  title={article.heading}
                   sx={{
                     height: { xs: 300, md: 360 },
                     position: 'relative',
@@ -136,10 +138,10 @@ const LastStories = (): JSX.Element => {
                 </CardMedia>
                 <Box component={CardContent} position={'relative'}>
                   <Typography variant={'h6'} gutterBottom>
-                    {item.title}
+                    {article.heading}
                   </Typography>
                   <Typography color="text.secondary">
-                    {item.description}
+                    {article.description}
                   </Typography>
                 </Box>
                 <Box flexGrow={1} />
@@ -154,15 +156,15 @@ const LastStories = (): JSX.Element => {
                   >
                     <Box display={'flex'} alignItems={'center'}>
                       <Avatar
-                        src={item.author.avatar}
+                        src={article.author.photo.url}
                         sx={{ marginRight: 1 }}
                       />
                       <Typography color={'text.secondary'}>
-                        {item.author.name}
+                        {article.author.name}
                       </Typography>
                     </Box>
                     <Typography color={'text.secondary'}>
-                      {item.date}
+                      {format(parseISO(article.publishedAt), 'yyyy / MMM dd')}
                     </Typography>
                   </Box>
                 </Box>
