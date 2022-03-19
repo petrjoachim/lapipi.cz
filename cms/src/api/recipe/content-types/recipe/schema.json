@@ -8,34 +8,48 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "heading": {
+    "name": {
       "type": "string"
     },
-    "shortDescription": {
-      "type": "text",
+    "article": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::article.article",
+      "inversedBy": "recipes"
+    },
+    "time": {
+      "type": "string",
+      "default": "60 minut",
       "required": true
     },
-    "heroImage": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
+    "ingredients": {
+      "displayName": "ingredient",
+      "type": "component",
+      "repeatable": true,
+      "component": "recipe.ingredient"
+    },
+    "instructions": {
+      "displayName": "instructions",
+      "type": "component",
+      "repeatable": true,
+      "component": "recipe.instructions"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "photos": {
       "allowedTypes": [
         "images",
         "files",
         "videos"
-      ]
-    },
-    "slug": {
-      "type": "uid"
-    },
-    "author": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::author.author"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

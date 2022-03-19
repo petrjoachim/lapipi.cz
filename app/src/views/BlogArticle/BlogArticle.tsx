@@ -14,8 +14,9 @@ import {
   SidebarNewsletter,
   SimilarStories,
 } from './components';
+import { ArticleProps } from 'types/Recipe';
 
-const BlogArticle = (): JSX.Element => {
+const BlogArticle = (article: ArticleProps): JSX.Element => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
@@ -24,12 +25,12 @@ const BlogArticle = (): JSX.Element => {
   return (
     <Main colorInvert={true}>
       <Box>
-        <Hero />
+        <Hero {...article} />
         <Container>
           <Grid container spacing={4}>
-          <Grid item>
-              <Content />
-            </Grid> 
+            <Grid item>
+              <Content {...article} />
+            </Grid>
             {/* <Grid item xs={12} md={8}>
               <Content />
             </Grid> */}

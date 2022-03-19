@@ -6,8 +6,10 @@ import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
 
 import Container from 'components/Container';
+import { ArticleProps } from 'types/Recipe';
+import { format, parseISO } from 'date-fns';
 
-const Hero = (): JSX.Element => {
+const Hero = (article: ArticleProps): JSX.Element => {
   useEffect(() => {
     const jarallaxInit = async () => {
       const jarallaxElems = document.querySelectorAll('.jarallax');
@@ -50,8 +52,7 @@ const Hero = (): JSX.Element => {
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
-          backgroundImage:
-            'url(https://assets.maccarianagency.com/backgrounds/img3.jpg)',
+          backgroundImage: `url(${article.hero.url})`,
         }}
       />
       <Box
@@ -77,17 +78,17 @@ const Hero = (): JSX.Element => {
               marginBottom: 2,
             }}
           >
-            Remote work is the future, but should you go remote?
+            {article.heading}
           </Typography>
           <Box display={'flex'} alignItems={'center'}>
             <Avatar
               sx={{ width: 60, height: 60, marginRight: 2 }}
-              src={'https://assets.maccarianagency.com/avatars/img3.jpg'}
+              src={article.author.photo.url}
             />
             <ListItemText
               sx={{ margin: 0 }}
-              primary={'Jhon Anderson'}
-              secondary={'May 19, 2021'}
+              primary={article.author.name ?? 'Lapipi.cz'}
+              secondary={format(parseISO(article.publishedAt), 'yyyy / MMM dd')}
               primaryTypographyProps={{
                 variant: 'h6',
                 sx: { color: 'common.white' },

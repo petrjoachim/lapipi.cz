@@ -18,8 +18,10 @@ import IconButton from '@mui/material/IconButton';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { ArticleProps } from 'types/Recipe';
+import { format, parseISO } from 'date-fns';
 
-const Content = (): JSX.Element => {
+const Content = (article: ArticleProps): JSX.Element => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
@@ -287,11 +289,15 @@ const Content = (): JSX.Element => {
         <Box display={'flex'} alignItems={'center'}>
           <Avatar
             sx={{ width: 50, height: 50, marginRight: 2 }}
-            src={'https://assets.maccarianagency.com/avatars/img3.jpg'}
+            src={article.author.photo.url}
           />
           <Box>
-            <Typography fontWeight={600}>Jhon Anderson</Typography>
-            <Typography color={'text.secondary'}>May 19, 2021</Typography>
+            <Typography fontWeight={600}>
+              {article.author.name ?? 'Lapipi.cz'}
+            </Typography>
+            <Typography color={'text.secondary'}>
+              {format(parseISO(article.publishedAt), 'yyyy / MMM dd')}
+            </Typography>
           </Box>
         </Box>
         <Box display={'flex'} alignItems={'center'}>
