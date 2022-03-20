@@ -20,6 +20,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { ArticleProps } from 'types/Recipe';
 import { format, parseISO } from 'date-fns';
+import Markdown from 'components/Markdown';
 
 const Content = (article: ArticleProps): JSX.Element => {
   const theme = useTheme();
@@ -52,74 +53,12 @@ const Content = (article: ArticleProps): JSX.Element => {
 
   return (
     <Box>
+      {/* Article content */}
       <Box paddingX={{ xs: 0, sm: 4, md: 6 }}>
-        <Typography variant={'subtitle1'}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Typography>
-        <Box width={1} height={1} marginY={4}>
-          <LazyLoadImage
-            height={'100%'}
-            width={'100%'}
-            src={'https://assets.maccarianagency.com/backgrounds/img4.jpg'}
-            alt="Remote working"
-            effect="blur"
-            style={{
-              filter:
-                theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
-              objectFit: 'cover',
-              borderRadius: 8,
-              width: '100%',
-              height: '100%',
-              maxHeight: 400,
-            }}
-          />
-        </Box>
-        <Typography
-          variant={'h4'}
-          color={'primary'}
-          align={'center'}
-          fontWeight={'normal'}
-        >
-          “So many teams struggle to make their onboarding experience anywhere
-          near as good as their core product, so the results of this is poor
-          retention”
-        </Typography>
-        <Box marginY={4}>
-          <Typography variant={'h5'} gutterBottom>
-            Big heading for a new topic
-          </Typography>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.
-          </Typography>
-          <Box marginTop={2}>
-            <ul>
-              <li>
-                <Typography>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </Typography>
-              </li>
-              <li>
-                <Typography>
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat.
-                </Typography>
-              </li>
-            </ul>
-          </Box>
-        </Box>
+        <Markdown>{article.content}</Markdown>
       </Box>
+
+      {/* Gallery */}
       <Box marginY={4}>
         <ImageList
           variant="quilted"
@@ -147,139 +86,26 @@ const Content = (article: ArticleProps): JSX.Element => {
           ))}
         </ImageList>
       </Box>
-      <Box paddingX={{ xs: 0, sm: 4, md: 6 }} paddingBottom={4}>
-        <Box>
-          <Typography variant={'h5'} gutterBottom>
-            Small heading for a smaller transition
-          </Typography>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.
-          </Typography>
-        </Box>
-      </Box>
-      {/* <Box
-        component={Card}
-        boxShadow={2}
-        display={'flex'}
-        flexDirection={{ xs: 'column', md: 'row-reverse' }}
-        sx={{ backgroundImage: 'none' }}
-      >
-        <Box
-          sx={{
-            width: { xs: 1, md: '50%' },
-            position: 'relative',
-            '& .lazy-load-image-loaded': {
-              height: 1,
-              display: 'flex !important',
-            },
-          }}
-        >
-          <Box
-            component={LazyLoadImage}
-            height={1}
-            width={1}
-            src={'https://assets.maccarianagency.com/backgrounds/img1.jpg'}
-            alt="..."
-            effect="blur"
-            sx={{
-              objectFit: 'cover',
-              maxHeight: 360,
-              filter:
-                theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
-            }}
-          />
-          <Box
-            component={'svg'}
-            viewBox="0 0 112 690"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            sx={{
-              position: 'absolute',
-              bottom: 0,
-              top: '-50%',
-              left: 0,
-              right: 0,
-              color: theme.palette.background.paper,
-              transform: 'scale(2)',
-              height: 1,
-              width: 'auto',
-              transformOrigin: 'top center',
-              display: { xs: 'none', md: 'block' },
-            }}
-          >
-            <path
-              d="M0 0h62.759v172C38.62 384 112 517 112 517v173H0V0z"
-              fill="currentColor"
-            />
+
+      {/* Recipe */}
+      {article.recipes.map((recipe) => (
+        <Box paddingX={{ xs: 0, sm: 4, md: 6 }} paddingBottom={4}>
+          <Box>
+            <Typography variant={'h5'} gutterBottom>
+              Recept &mdash; {recipe.name}
+            </Typography>
+            {recipe.instructions.map((instruction) => (
+              <Markdown>{instruction.step}</Markdown>
+            ))}
           </Box>
         </Box>
-        <CardContent
-          sx={{
-            position: 'relative',
-            width: { xs: 1, md: '50%' },
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          <form>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <Typography variant={'h6'} gutterBottom>
-                  Download our sturtup giude
-                </Typography>
-                <Typography color={'text.secondary'}>
-                  Small heading for a smaller transition
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  label="Name *"
-                  variant="outlined"
-                  name={'name'}
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  label="Email *"
-                  variant="outlined"
-                  name={'email'}
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  size={'large'}
-                  fullWidth
-                  variant={'contained'}
-                  type={'submit'}
-                  sx={{ height: 54 }}
-                >
-                  Download
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
-        </CardContent>
-      </Box> */}
-      {/* <Box paddingX={{ xs: 0, sm: 4, md: 6 }} paddingY={4}>
-        <Typography color={'text.secondary'}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
-        </Typography>
-      </Box> */}
+      ))}
+
       <Box paddingY={4}>
         <Divider />
       </Box>
+
+      {/* Author and social box */}
       <Box
         display={'flex'}
         alignItems={'center'}
@@ -300,7 +126,7 @@ const Content = (article: ArticleProps): JSX.Element => {
             </Typography>
           </Box>
         </Box>
-        <Box display={'flex'} alignItems={'center'}>
+        {/* <Box display={'flex'} alignItems={'center'}>
           <Typography color={'text.secondary'}>Share:</Typography>
           <Box marginLeft={0.5}>
             <IconButton aria-label="Facebook">
@@ -313,7 +139,7 @@ const Content = (article: ArticleProps): JSX.Element => {
               <TwitterIcon />
             </IconButton>
           </Box>
-        </Box>
+        </Box> */}
       </Box>
     </Box>
   );
