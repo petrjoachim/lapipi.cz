@@ -61,6 +61,7 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^12.1.1",
     "@types/aos": "^3.0.4",
     "@types/node": "^16.7.10",
     "@types/react": "^17.0.19",

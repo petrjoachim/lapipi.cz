@@ -12,16 +12,16 @@ import {
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
-const styles = (theme) => ({
-  listItem: {
-    marginTop: theme.spacing(1),
-  },
-  header: {
-    marginTop: theme.spacing(2),
-  },
-});
+// const styles = (theme) => ({
+//   listItem: {
+//     marginTop: theme.spacing(1),
+//   },
+//   header: {
+//     marginTop: theme.spacing(2),
+//   },
+// });
 
-function MarkdownParagraph(props) {
+function MarkdownParagraph(props: any) {
   return <Typography>{props.children}</Typography>;
 }
 
@@ -59,7 +59,7 @@ function MarkdownParagraph(props) {
 //   );
 // });
 
-function MarkdownTable(props) {
+function MarkdownTable(props: any) {
   return (
     <TableContainer component={Paper}>
       <Table size="small" aria-label="a dense table">
@@ -69,7 +69,7 @@ function MarkdownTable(props) {
   );
 }
 
-function MarkdownTableCell(props) {
+function MarkdownTableCell(props: any) {
   return (
     <TableCell>
       <Typography>{props.children}</Typography>
@@ -77,15 +77,15 @@ function MarkdownTableCell(props) {
   );
 }
 
-function MarkdownTableRow(props) {
+function MarkdownTableRow(props: any) {
   return <TableRow>{props.children}</TableRow>;
 }
 
-function MarkdownTableBody(props) {
+function MarkdownTableBody(props: any) {
   return <TableBody>{props.children}</TableBody>;
 }
 
-function MarkdownTableHead(props) {
+function MarkdownTableHead(props: any) {
   return <TableHead>{props.children}</TableHead>;
 }
 
@@ -101,6 +101,6 @@ const renderers = {
   tableCell: MarkdownTableCell,
 };
 
-export default function Markdown(props) {
-  return <ReactMarkdown escapeHtml={false} renderers={renderers} {...props} />;
+export default function Markdown(props: any) {
+  return <ReactMarkdown components={renderers} {...props} />;
 }

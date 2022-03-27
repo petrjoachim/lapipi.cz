@@ -7,8 +7,6 @@ const qs = require('qs');
 export const getServerSideProps = async ({
   params,
 }): Promise<{ props: { articles: ArticleProps[] } }> => {
-  console.debug(params);
-
   const host = process.env.BACKEND_URL ?? 'http://localhost:1337';
   const query = qs.stringify(
     {

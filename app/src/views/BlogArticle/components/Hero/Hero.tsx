@@ -17,6 +17,7 @@ const Hero = (article: ArticleProps): JSX.Element => {
         return;
       }
 
+      // @ts-ignore
       const { jarallax } = await import('jarallax');
       jarallax(jarallaxElems, { speed: 0.2 });
     };
