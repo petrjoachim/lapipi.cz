@@ -9,8 +9,8 @@ export interface ArticleProps {
   publishedAt: string;
 
   hero?: PhotoComponent;
-  photos?: PhotoComponent[];
-  recipes?: Recipe[];
+  photos: PhotoComponent[];
+  recipes: Recipe[];
   author?: Author;
 }
 
@@ -23,7 +23,7 @@ export interface Recipe {
   updatedAt: string;
   publishedAt: string;
 
-  photos?: PhotoComponent[];
+  photos: PhotoComponent[];
   instructions: Instruction[];
   ingredients: Ingredient[];
 }

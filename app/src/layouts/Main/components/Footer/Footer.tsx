@@ -29,11 +29,7 @@ const Footer = (): JSX.Element => {
           >
             <Box
               component={'img'}
-              src={
-                mode === 'light'
-                  ? 'https://assets.maccarianagency.com/the-front/logos/logo.svg'
-                  : 'https://assets.maccarianagency.com/the-front/logos/logo-negative.svg'
-              }
+              src={mode === 'light' ? '/light/logo.svg' : '/dark/logo.svg'}
               height={1}
               width={1}
             />

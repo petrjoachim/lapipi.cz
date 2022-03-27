@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
+import React, { useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -7,49 +7,22 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Avatar from '@mui/material/Avatar';
-import IconButton from '@mui/material/IconButton';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import InstagramIcon from '@mui/icons-material/Instagram';
 import { ArticleProps } from 'types/Recipe';
 import { format, parseISO } from 'date-fns';
 import Markdown from 'components/Markdown';
+import { Stack } from '@mui/material';
 
 const Content = (article: ArticleProps): JSX.Element => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
   });
-
-  const photos = [
-    {
-      src: 'https://assets.maccarianagency.com/backgrounds/img25.jpg',
-      rows: 1,
-      cols: 2,
-    },
-    {
-      src: 'https://assets.maccarianagency.com/backgrounds/img22.jpg',
-      rows: 1,
-      cols: 1,
-    },
-    {
-      src: 'https://assets.maccarianagency.com/backgrounds/img24.jpg',
-      rows: 1,
-      cols: 1,
-    },
-    {
-      src: 'https://assets.maccarianagency.com/backgrounds/img21.jpg',
-      rows: 1,
-      cols: 2,
-    },
-  ];
+  const photos = article.photos.concat(
+    ...article.recipes.map((recipe) => recipe.photos),
+  );
+  const [current, setCurrent] = useState(photos[0]);
 
   return (
     <Box>
@@ -59,43 +32,73 @@ const Content = (article: ArticleProps): JSX.Element => {
       </Box>
 
       {/* Gallery */}
-      <Box marginY={4}>
-        <ImageList
-          variant="quilted"
-          cols={3}
-          rowHeight={isMd ? 300 : 220}
-          gap={isMd ? 16 : 8}
+      <Box>
+        <Stack
+          direction={'row'}
+          spacing={2}
+          alignItems={'center'}
+          flexWrap={'wrap'}
         >
-          {photos.map((item, i) => (
-            <ImageListItem key={i} cols={item.cols || 2} rows={item.rows || 1}>
-              <LazyLoadImage
-                height={'100%'}
-                width={'100%'}
-                src={item.src}
-                alt="..."
-                effect="blur"
-                style={{
+          {photos.map((photo, i) => (
+            <Box
+              key={`photo-${i}`}
+              onClick={() => setCurrent(photo)}
+              sx={{
+                width: 80,
+                height: 'auto',
+                cursor: 'pointer',
+                '& img': {
+                  width: 1,
+                  height: 1,
                   objectFit: 'cover',
-                  cursor: 'poiner',
-                  borderRadius: 8,
-                  filter:
-                    theme.palette.mode === 'dark' ? 'brightness(0.7)' : 'none',
-                }}
-              />
-            </ImageListItem>
+                  borderRadius: 2,
+                },
+              }}
+            >
+              <img src={photo.url} alt={photo.caption} />
+            </Box>
           ))}
-        </ImageList>
+        </Stack>
+        {current && (
+          <Box
+            sx={{
+              marginBottom: 2,
+              width: 1,
+              height: 'auto',
+              '& img': {
+                width: 1,
+                height: 1,
+                objectFit: 'cover',
+                borderRadius: 2,
+              },
+            }}
+          >
+            <img src={current.url} alt={current.caption} />
+          </Box>
+        )}
       </Box>
 
       {/* Recipe */}
-      {article.recipes.map((recipe) => (
-        <Box paddingX={{ xs: 0, sm: 4, md: 6 }} paddingBottom={4}>
+      {article.recipes.map((recipe, i) => (
+        <Box
+          key={`recipe-${i}`}
+          paddingX={{ xs: 0, sm: 4, md: 6 }}
+          paddingBottom={4}
+        >
           <Box>
             <Typography variant={'h5'} gutterBottom>
-              Recept &mdash; {recipe.name}
+              Postup &mdash; {recipe.name} &mdash; {recipe.time}
             </Typography>
-            {recipe.instructions.map((instruction) => (
-              <Markdown>{instruction.step}</Markdown>
+            {recipe.ingredients.map((ingredient, i) => (
+              <Typography key={`ingredient-${i}`}>
+                {ingredient.amount} {ingredient.unit} &mdash; {ingredient.name}
+              </Typography>
+            ))}
+            {recipe.instructions.map((instruction, i) => (
+              <Box key={`instruction-${i}`}>
+                <Typography variant={'h4'}>{i + 1}</Typography>
+                <Markdown>{instruction.step}</Markdown>
+              </Box>
             ))}
           </Box>
         </Box>
